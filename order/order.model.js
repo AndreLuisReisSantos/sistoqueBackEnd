@@ -4,8 +4,9 @@ module.exports = model;
 
 function model(sequelize) {
     const attributes = {
-        nome: { type: DataTypes.STRING, allowNull: false },
-        categoriaReceita: { type: DataTypes.INTEGER, allowNull: false }
+        idFuncionario: { type: DataTypes.INTEGER, allowNull: false },
+        dataPedido: { type: DataTypes.STRING, allowNull: false },
+        status: { type: DataTypes.STRING, allowNull: false },
     };
 
     const options = {
@@ -17,5 +18,5 @@ function model(sequelize) {
         }
     };
 
-    return sequelize.define('Recipe', attributes, options);
+    return sequelize.define('Order', attributes, options);
 }

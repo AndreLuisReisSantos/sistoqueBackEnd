@@ -3,12 +3,11 @@ const router = express.Router();
 const Joi = require('joi');
 const validateRequest = require('_middleware/validate-request');
 const authorize = require('_middleware/authorize')
-const recipeService = require('./recipe.service');
+const orderService = require('./order.service');
 
 router.post('/register', authorize(), registerSchema, register);
 router.get('/', authorize(), getAll);
 router.get('/:id', authorize(), getById);
-router.get('/category/:id', authorize(), getByCategoryId);
 router.put('/:id', authorize(), updateSchema, update);
 router.delete('/:id', authorize(), _delete);
 
@@ -16,54 +15,47 @@ module.exports = router;
 
 function registerSchema(req, res, next) {
     const schema = Joi.object({
-        categoriaReceita: Joi.number().required(),
-        nome: Joi.string().required(),
-        produtos: Joi.array().required()
+        dataPedido: Joi.string().required(),
+        receitas: Joi.array().required()
     });
     validateRequest(req, next, schema);
 }
 
 function register(req, res, next) {
-    recipeService.create(req.body)
+    orderService.create(req.body, req.user.id)
         .then(() => res.json({ message: 'Cadastrado com sucesso!' }))
         .catch(next);
 }
 
 function getAll(req, res, next) {
-    recipeService.getAll()
-        .then(categorys => res.json(categorys))
+    orderService.getAll()
+        .then(orders => res.json(orders))
         .catch(next);
 }
 
 function getById(req, res, next) {
-    recipeService.getById(req.params.id)
-        .then(category => res.json(category))
-        .catch(next);
-}
-
-function getByCategoryId(req, res, next) {
-    recipeService.getByCategoryId(req.params.id)
-        .then(category => res.json(category))
+    orderService.getById(req.params.id)
+        .then(order => res.json(order))
         .catch(next);
 }
 
 function updateSchema(req, res, next) {
     const schema = Joi.object({
-        categoriaReceita: Joi.number().required(),
-        nome: Joi.string().empty(),
-        produtos: Joi.array().required()
+        idFuncionario: Joi.number().empty(),
+        dataPedido: Joi.string().empty(),
+        receitas: Joi.array().empty()
     });
     validateRequest(req, next, schema);
 }
 
 function update(req, res, next) {
-    recipeService.update(req.params.id, req.body)
-        .then(category => res.json(category))
+    orderService.update(req.params.id, req.body)
+        .then(order => res.json(order))
         .catch(next);
 }
 
 function _delete(req, res, next) {
-    recipeService.delete(req.params.id)
-        .then(() => res.json({ message: 'Receita deletada com sucesso!' }))
+    orderService.delete(req.params.id)
+        .then(() => res.json({ message: 'Pedido deletado com sucesso!' }))
         .catch(next);
 }

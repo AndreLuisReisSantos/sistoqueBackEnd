@@ -16,7 +16,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzMjc5ODE5OCwiZXhwIjoxNjMzNDAyOTk4fQ.I2wJluBPxTin-UftpA3nHZ831kXlP6AjiniugXgcJhc",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -25,7 +25,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"nome\": \"Glaucia\",\r\n\t\"cargo\": \"Desenvolvedora\",\r\n\t\"dataNascimento\": \"01/03/2001\",\r\n\t\"cpf\": \"11321.111.111-11\",\r\n\t\"rg\": \"232.3222.222-2\",\r\n\t\"telefone\": \"3222-4556\",\r\n\t\"tipoUsuario\": 1,\r\n\t\"login\": \"gl1e13q31s\",\r\n\t\"senha\": \"glauc3ia12yoo3\"\r\n}",
+							"raw": "{\r\n\t\"nome\": \"Glaucia\",\r\n\t\"cargo\": \"Desenvolvedora\",\r\n\t\"dataNascimento\": \"01/03/2001\",\r\n\t\"cpf\": \"321.111.111-11\",\r\n\t\"rg\": \"232.322.222-2\",\r\n\t\"telefone\": \"3222-4556\",\r\n\t\"tipoUsuario\": 1,\r\n\t\"login\": \"glaucia\",\r\n\t\"senha\": \"glaucia\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -33,12 +33,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/users/register",
-							"protocol": "http",
+							"raw": "{{host}}/users/register",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"users",
 								"register"
@@ -49,12 +47,34 @@
 				},
 				{
 					"name": "Autenticar usuário",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"token\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"login\": \"admin\",\r\n\t\"senha\": \"admin123\"\r\n}",
+							"raw": "{\r\n\t\"login\": \"glaucia\",\r\n\t\"senha\": \"glaucia\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -62,12 +82,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/users/authenticate",
-							"protocol": "http",
+							"raw": "{{host}}/users/authenticate",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"users",
 								"authenticate"
@@ -84,7 +102,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzMjk2NTQzMCwiZXhwIjoxNjMzNTcwMjMwfQ.h3II-24cxHpdqWxy9A6SOrrGJhWGTx2v_BpcY5u_C0c",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -92,12 +110,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/users",
-							"protocol": "http",
+							"raw": "{{host}}/users",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"users"
 							]
@@ -113,7 +129,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzMjc5ODE5OCwiZXhwIjoxNjMzNDAyOTk4fQ.I2wJluBPxTin-UftpA3nHZ831kXlP6AjiniugXgcJhc",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -121,12 +137,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/users/1",
-							"protocol": "http",
+							"raw": "{{host}}/users/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"users",
 								"1"
@@ -143,7 +157,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTYzMjc5Mzc2NCwiZXhwIjoxNjMzMzk4NTY0fQ.K1LXoZUG20Qy_kXII8fOj2jWHBtXYNxtSdCYGXaCCy0",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -151,12 +165,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/users/current",
-							"protocol": "http",
+							"raw": "{{host}}/users/current",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"users",
 								"current"
@@ -173,7 +185,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTYzMjc5NTE3OCwiZXhwIjoxNjMzMzk5OTc4fQ.4hXGCYzt6kCuC9N5tIR0jhRtzGoL8sZsxeujk_L3mQY",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -182,7 +194,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"nome\": \"Glaucia\",\r\n\t\"cargo\": \"Desenvolvedora\",\r\n\t\"dataNascimento\": \"01/03/2001\",\r\n\t\"cpf\": \"333.111.111-11\",\r\n\t\"rg\": \"66.3222.222-2\",\r\n\t\"telefone\": \"3222-4556\",\r\n\t\"tipoUsuario\": 2,\r\n\t\"login\": \"g\",\r\n\t\"senha\": \"glau3443\"\r\n}",
+							"raw": "{\r\n\t\"nome\": \"Glaucia\",\r\n\t\"cargo\": \"Desenvolvedora\",\r\n\t\"dataNascimento\": \"01/03/2001\",\r\n\t\"cpf\": \"3433.111.111-11\",\r\n\t\"rg\": \"66.32422.222-2\",\r\n\t\"telefone\": \"3222-4556\",\r\n\t\"tipoUsuario\": 2,\r\n\t\"login\": \"admin\",\r\n\t\"senha\": \"admin123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -190,15 +202,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/users/3",
-							"protocol": "http",
+							"raw": "{{host}}/users/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"users",
-								"3"
+								"1"
 							]
 						}
 					},
@@ -212,7 +222,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTYzMjc5Mzc2NCwiZXhwIjoxNjMzMzk4NTY0fQ.K1LXoZUG20Qy_kXII8fOj2jWHBtXYNxtSdCYGXaCCy0",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -220,12 +230,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/users/1",
-							"protocol": "http",
+							"raw": "{{host}}/users/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"users",
 								"1"
@@ -247,7 +255,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzMjc5ODE5OCwiZXhwIjoxNjMzNDAyOTk4fQ.I2wJluBPxTin-UftpA3nHZ831kXlP6AjiniugXgcJhc",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -256,7 +264,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"nome\": \"Gerente\"\r\n}",
+							"raw": "{\r\n\t\"nome\": \"Assistente\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -264,12 +272,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/type-users/register",
-							"protocol": "http",
+							"raw": "{{host}}/type-users/register",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"type-users",
 								"register"
@@ -286,7 +292,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzMjc5ODE5OCwiZXhwIjoxNjMzNDAyOTk4fQ.I2wJluBPxTin-UftpA3nHZ831kXlP6AjiniugXgcJhc",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -294,12 +300,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/type-users",
-							"protocol": "http",
+							"raw": "{{host}}/type-users",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"type-users"
 							]
@@ -315,7 +319,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzMjc5ODE5OCwiZXhwIjoxNjMzNDAyOTk4fQ.I2wJluBPxTin-UftpA3nHZ831kXlP6AjiniugXgcJhc",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -323,15 +327,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/type-users/1",
-							"protocol": "http",
+							"raw": "{{host}}/type-users/2",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"type-users",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -345,7 +347,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTYzMjc5Mzc2NCwiZXhwIjoxNjMzMzk4NTY0fQ.K1LXoZUG20Qy_kXII8fOj2jWHBtXYNxtSdCYGXaCCy0",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -362,12 +364,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/type-users/1",
-							"protocol": "http",
+							"raw": "{{host}}/type-users/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"type-users",
 								"1"
@@ -384,7 +384,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzMjc5ODE5OCwiZXhwIjoxNjMzNDAyOTk4fQ.I2wJluBPxTin-UftpA3nHZ831kXlP6AjiniugXgcJhc",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -401,12 +401,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/type-users/1",
-							"protocol": "http",
+							"raw": "{{host}}/type-users/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"type-users",
 								"1"
@@ -428,7 +426,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzMjk1MjM5MiwiZXhwIjoxNjMzNTU3MTkyfQ.iut3zpLksgQR7JfnDN12KBIR2kmwrgI5EceHUR8StpA",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -445,12 +443,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/providers/register",
-							"protocol": "http",
+							"raw": "{{host}}/providers/register",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"providers",
 								"register"
@@ -467,7 +463,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzMjk1MjM5MiwiZXhwIjoxNjMzNTU3MTkyfQ.iut3zpLksgQR7JfnDN12KBIR2kmwrgI5EceHUR8StpA",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -475,12 +471,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/providers",
-							"protocol": "http",
+							"raw": "{{host}}/providers",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"providers"
 							]
@@ -496,7 +490,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzMjk1MjM5MiwiZXhwIjoxNjMzNTU3MTkyfQ.iut3zpLksgQR7JfnDN12KBIR2kmwrgI5EceHUR8StpA",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -504,12 +498,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/providers/2",
-							"protocol": "http",
+							"raw": "{{host}}/providers/2",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"providers",
 								"2"
@@ -526,7 +518,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzMjk1MjM5MiwiZXhwIjoxNjMzNTU3MTkyfQ.iut3zpLksgQR7JfnDN12KBIR2kmwrgI5EceHUR8StpA",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -543,12 +535,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/providers/2",
-							"protocol": "http",
+							"raw": "{{host}}/providers/2",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"providers",
 								"2"
@@ -565,7 +555,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzMjk1MjM5MiwiZXhwIjoxNjMzNTU3MTkyfQ.iut3zpLksgQR7JfnDN12KBIR2kmwrgI5EceHUR8StpA",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -573,12 +563,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/providers/1",
-							"protocol": "http",
+							"raw": "{{host}}/providers/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"providers",
 								"1"
@@ -600,7 +588,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzMjk1MjM5MiwiZXhwIjoxNjMzNTU3MTkyfQ.iut3zpLksgQR7JfnDN12KBIR2kmwrgI5EceHUR8StpA",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -617,12 +605,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/representatives/register",
-							"protocol": "http",
+							"raw": "{{host}}/representatives/register",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"representatives",
 								"register"
@@ -639,7 +625,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzMjk1MjM5MiwiZXhwIjoxNjMzNTU3MTkyfQ.iut3zpLksgQR7JfnDN12KBIR2kmwrgI5EceHUR8StpA",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -647,12 +633,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/representatives",
-							"protocol": "http",
+							"raw": "{{host}}/representatives",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"representatives"
 							]
@@ -668,7 +652,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzMjk1MjM5MiwiZXhwIjoxNjMzNTU3MTkyfQ.iut3zpLksgQR7JfnDN12KBIR2kmwrgI5EceHUR8StpA",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -676,12 +660,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/representatives/1",
-							"protocol": "http",
+							"raw": "{{host}}/representatives/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"representatives",
 								"1"
@@ -698,7 +680,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzMjk1MjM5MiwiZXhwIjoxNjMzNTU3MTkyfQ.iut3zpLksgQR7JfnDN12KBIR2kmwrgI5EceHUR8StpA",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -715,12 +697,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/representatives/1",
-							"protocol": "http",
+							"raw": "{{host}}/representatives/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"representatives",
 								"1"
@@ -737,7 +717,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzMjk1MjM5MiwiZXhwIjoxNjMzNTU3MTkyfQ.iut3zpLksgQR7JfnDN12KBIR2kmwrgI5EceHUR8StpA",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -754,12 +734,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/representatives/1",
-							"protocol": "http",
+							"raw": "{{host}}/representatives/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"representatives",
 								"1"
@@ -781,7 +759,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzMjk1MjM5MiwiZXhwIjoxNjMzNTU3MTkyfQ.iut3zpLksgQR7JfnDN12KBIR2kmwrgI5EceHUR8StpA",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -798,12 +776,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/categories/register",
-							"protocol": "http",
+							"raw": "{{host}}/categories/register",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"categories",
 								"register"
@@ -820,7 +796,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTYzMjc5Mzc2NCwiZXhwIjoxNjMzMzk4NTY0fQ.K1LXoZUG20Qy_kXII8fOj2jWHBtXYNxtSdCYGXaCCy0",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -828,12 +804,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/categories",
-							"protocol": "http",
+							"raw": "{{host}}/categories",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"categories"
 							]
@@ -849,7 +823,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTYzMjc5Mzc2NCwiZXhwIjoxNjMzMzk4NTY0fQ.K1LXoZUG20Qy_kXII8fOj2jWHBtXYNxtSdCYGXaCCy0",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -857,12 +831,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/categories/1",
-							"protocol": "http",
+							"raw": "{{host}}/categories/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"categories",
 								"1"
@@ -879,7 +851,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTYzMjc5Mzc2NCwiZXhwIjoxNjMzMzk4NTY0fQ.K1LXoZUG20Qy_kXII8fOj2jWHBtXYNxtSdCYGXaCCy0",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -896,12 +868,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/categories/2",
-							"protocol": "http",
+							"raw": "{{host}}/categories/2",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"categories",
 								"2"
@@ -918,7 +888,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTYzMjc5Mzc2NCwiZXhwIjoxNjMzMzk4NTY0fQ.K1LXoZUG20Qy_kXII8fOj2jWHBtXYNxtSdCYGXaCCy0",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -935,15 +905,355 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/categories/1",
-							"protocol": "http",
+							"raw": "{{host}}/categories/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"categories",
 								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categoria de Receita",
+			"item": [
+				{
+					"name": "Registrar categoria de receita",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"nome\": \"Categoria de receita\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/recipe-categories/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"recipe-categories",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar categorias de receita",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/recipe-categories",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"recipe-categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar categoria de receita pelo ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/recipe-categories/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"recipe-categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar categoria de receita pelo ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"nome\": \"Categoria de receita 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/recipe-categories/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"recipe-categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar categoria de receita pelo ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"nome\": \"Assistente\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/recipe-categories/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"recipe-categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pedido",
+			"item": [
+				{
+					"name": "Registrar pedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"dataPedido\": \"08/11/2021\",\r\n\t\"receitas\": [\r\n\t\t{\r\n\t\t\t\"id\": 1,\r\n\t\t\t\"qtd\": 1\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"id\": 1,\r\n\t\t\t\"qtd\": 1\r\n\t\t}\r\n\t]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/orders/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"orders",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar pedidos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/orders",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar pedido pelo ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/orders/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"orders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar pedido pelo ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"idFuncionario\": 1,\r\n\t\"dataPedido\": \"08/11/2021\",\r\n\t\"receitas\": [\r\n\t\t{\r\n\t\t\t\"id\": 1,\r\n\t\t\t\"qtd\": 10\r\n\t\t}\r\n\t]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/orders/8",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"orders",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar pedido pelo ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"nome\": \"Assistente\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/orders/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"orders",
+								"5"
 							]
 						}
 					},
@@ -962,7 +1272,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzNjMzODg1MSwiZXhwIjoxNjM2OTQzNjUxfQ.1CNHfS3Vo4H1YwVUX1G0GFhPckAXPkLshv338U3ZbAk",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -971,7 +1281,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"idProduto\": 1,\r\n\t\"qtd\": 200,\r\n\t\"dataRecebimento\": \"27/10/2021\",\r\n\t\"dataVencimento\": \"27/11/2021\"\r\n}",
+							"raw": "{\r\n\t\"idProduto\": 1,\r\n\t\"qtd\": 30000,\r\n\t\"dataRecebimento\": \"27/10/2021\",\r\n\t\"dataVencimento\": \"27/11/2021\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -979,12 +1289,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/inventories/register",
-							"protocol": "http",
+							"raw": "{{host}}/inventories/register",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"inventories",
 								"register"
@@ -1001,7 +1309,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzNjMzODg1MSwiZXhwIjoxNjM2OTQzNjUxfQ.1CNHfS3Vo4H1YwVUX1G0GFhPckAXPkLshv338U3ZbAk",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -1009,12 +1317,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/inventories",
-							"protocol": "http",
+							"raw": "{{host}}/inventories",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"inventories"
 							]
@@ -1030,7 +1336,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzNjMzODg1MSwiZXhwIjoxNjM2OTQzNjUxfQ.1CNHfS3Vo4H1YwVUX1G0GFhPckAXPkLshv338U3ZbAk",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -1038,12 +1344,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/inventories/1",
-							"protocol": "http",
+							"raw": "{{host}}/inventories/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"inventories",
 								"1"
@@ -1060,7 +1364,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzNjMzODg1MSwiZXhwIjoxNjM2OTQzNjUxfQ.1CNHfS3Vo4H1YwVUX1G0GFhPckAXPkLshv338U3ZbAk",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -1068,12 +1372,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/inventories/product/1",
-							"protocol": "http",
+							"raw": "{{host}}/inventories/product/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"inventories",
 								"product",
@@ -1091,7 +1393,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzNjMzODg1MSwiZXhwIjoxNjM2OTQzNjUxfQ.1CNHfS3Vo4H1YwVUX1G0GFhPckAXPkLshv338U3ZbAk",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -1100,7 +1402,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"idProduto\": 1,\r\n\t\"qtd\": 2010,\r\n\t\"dataRecebimento\": \"27/10/2021\",\r\n\t\"dataVencimento\": \"27/11/2021\"\r\n}",
+							"raw": "{\r\n\t\"idProduto\": 1,\r\n\t\"qtd\": 500,\r\n\t\"dataRecebimento\": \"27/10/2021\",\r\n\t\"dataVencimento\": \"27/11/2021\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1108,12 +1410,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/inventories/1",
-							"protocol": "http",
+							"raw": "{{host}}/inventories/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"inventories",
 								"1"
@@ -1130,7 +1430,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzNjMzODg1MSwiZXhwIjoxNjM2OTQzNjUxfQ.1CNHfS3Vo4H1YwVUX1G0GFhPckAXPkLshv338U3ZbAk",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -1147,15 +1447,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/inventories/2",
-							"protocol": "http",
+							"raw": "{{host}}/inventories/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"inventories",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -1174,7 +1472,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzNjMzMTAxNywiZXhwIjoxNjM2OTM1ODE3fQ.ShPSlpYSoepZXt6bFDJmiHlcwNSgUAP3GDQ5hHgd2TI",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -1183,7 +1481,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"nome\": \"Pizza Calabresa\",\r\n\t\"produtos\": [\r\n\t\t{\r\n\t\t\t\"id\": 1,\r\n\t\t\t\"qtd\": 200\r\n\t\t}\r\n\t]\r\n}",
+							"raw": "{\r\n\t\"categoriaReceita\": 2,\r\n\t\"nome\": \"Pizza Calabresa31213\",\r\n\t\"produtos\": [\r\n\t\t{\r\n\t\t\t\"id\": 1,\r\n\t\t\t\"qtd\": 200\r\n\t\t}\r\n\t]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1191,12 +1489,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/recipes/register",
-							"protocol": "http",
+							"raw": "{{host}}/recipes/register",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"recipes",
 								"register"
@@ -1213,7 +1509,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzNjMzMTAxNywiZXhwIjoxNjM2OTM1ODE3fQ.ShPSlpYSoepZXt6bFDJmiHlcwNSgUAP3GDQ5hHgd2TI",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -1221,12 +1517,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/recipes",
-							"protocol": "http",
+							"raw": "{{host}}/recipes",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"recipes"
 							]
@@ -1242,7 +1536,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzNjMzMTAxNywiZXhwIjoxNjM2OTM1ODE3fQ.ShPSlpYSoepZXt6bFDJmiHlcwNSgUAP3GDQ5hHgd2TI",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -1250,15 +1544,42 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/recipes/1",
-							"protocol": "http",
+							"raw": "{{host}}/recipes/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"recipes",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar receita pelo ID da categoria",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/recipes/category/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"recipes",
+								"category",
+								"2"
 							]
 						}
 					},
@@ -1272,7 +1593,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzNjMzMTAxNywiZXhwIjoxNjM2OTM1ODE3fQ.ShPSlpYSoepZXt6bFDJmiHlcwNSgUAP3GDQ5hHgd2TI",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -1281,7 +1602,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"nome\": \"Pizza CalabresaX\",\r\n\t\"produtos\": [\r\n\t\t{\r\n\t\t\t\"id\": 2,\r\n\t\t\t\"qtd\": 200\r\n\t\t}\r\n\t]\r\n}",
+							"raw": "{\r\n\t\"categoriaReceita\": 2,\r\n\t\"nome\": \"Pizza CalabresaX\",\r\n\t\"produtos\": [\r\n\t\t{\r\n\t\t\t\"id\": 1,\r\n\t\t\t\"qtd\": 200\r\n\t\t}\r\n\t]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1289,15 +1610,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/recipes/1",
-							"protocol": "http",
+							"raw": "{{host}}/recipes/9",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"recipes",
-								"1"
+								"9"
 							]
 						}
 					},
@@ -1311,7 +1630,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzNjMzMTAxNywiZXhwIjoxNjM2OTM1ODE3fQ.ShPSlpYSoepZXt6bFDJmiHlcwNSgUAP3GDQ5hHgd2TI",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -1328,15 +1647,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/recipes/1",
-							"protocol": "http",
+							"raw": "{{host}}/recipes/8",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"recipes",
-								"1"
+								"8"
 							]
 						}
 					},
@@ -1355,7 +1672,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzNjMzMTAxNywiZXhwIjoxNjM2OTM1ODE3fQ.ShPSlpYSoepZXt6bFDJmiHlcwNSgUAP3GDQ5hHgd2TI",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -1372,12 +1689,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/products/register",
-							"protocol": "http",
+							"raw": "{{host}}/products/register",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"products",
 								"register"
@@ -1394,7 +1709,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTYzMjc5Mzc2NCwiZXhwIjoxNjMzMzk4NTY0fQ.K1LXoZUG20Qy_kXII8fOj2jWHBtXYNxtSdCYGXaCCy0",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -1402,12 +1717,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/products",
-							"protocol": "http",
+							"raw": "{{host}}/products",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"products"
 							]
@@ -1423,7 +1736,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTYzMjc5Mzc2NCwiZXhwIjoxNjMzMzk4NTY0fQ.K1LXoZUG20Qy_kXII8fOj2jWHBtXYNxtSdCYGXaCCy0",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -1431,12 +1744,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/products/1",
-							"protocol": "http",
+							"raw": "{{host}}/products/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"products",
 								"1"
@@ -1453,7 +1764,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTYzMjc5Mzc2NCwiZXhwIjoxNjMzMzk4NTY0fQ.K1LXoZUG20Qy_kXII8fOj2jWHBtXYNxtSdCYGXaCCy0",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -1470,12 +1781,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/products/2",
-							"protocol": "http",
+							"raw": "{{host}}/products/2",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"products",
 								"2"
@@ -1492,7 +1801,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTYzMjc5Mzc2NCwiZXhwIjoxNjMzMzk4NTY0fQ.K1LXoZUG20Qy_kXII8fOj2jWHBtXYNxtSdCYGXaCCy0",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -1509,12 +1818,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/products/1",
-							"protocol": "http",
+							"raw": "{{host}}/products/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "4000",
 							"path": [
 								"products",
 								"1"
@@ -1524,6 +1831,29 @@
 					"response": []
 				}
 			]
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
